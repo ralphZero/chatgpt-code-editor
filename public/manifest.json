@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Code Formatter Extension",
+  "version": "1.0",
+  "description": "A Chrome extension to insert formatted code into the input field.",
+  "permissions": ["activeTab", "scripting", "sidePanel"],
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "background": {
+    "service_worker": "service_worker.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "host_permissions": ["https://*/*", "http://*/*"]
+}
