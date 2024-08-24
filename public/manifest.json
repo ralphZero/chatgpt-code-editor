@@ -11,11 +11,11 @@
     "service_worker": "service_worker.js",
     "type": "module"
   },
-  "web_accessible_resources": [
+  "content_scripts": [
     {
-      "resources": ["src/*"],
-      "matches": ["<all_urls>"]
+      "matches": ["https://chatgpt.com/c/*"],
+      "js": ["content.js"]
     }
   ],
-  "host_permissions": ["https://*/*", "http://*/*"]
+  "host_permissions": ["https://chatgpt.com/*"]
 }
