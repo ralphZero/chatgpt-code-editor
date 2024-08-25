@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Code Formatter Extension",
+  "name": "ChatGPT Code Editor Extension",
   "version": "1.0",
-  "description": "A Chrome extension to insert formatted code into the input field.",
+  "description": "A Chrome extension to edit code in ChatGPT",
   "permissions": ["activeTab", "scripting", "sidePanel"],
   "side_panel": {
     "default_path": "index.html"
