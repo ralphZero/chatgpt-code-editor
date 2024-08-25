@@ -3,3 +3,26 @@
   padding: 0;
   text-align: center;
 }
+
+.chatgpt-editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  background-color: #181818;
+  border-bottom: 1px solid #037e6f;
+}
+
+.chatgpt-editor-toolbar-brand {
+  font-size: 18;
+  font-weight: 600;
+}
+
+.chatgpt-editor-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatgpt-editor {
+  flex-grow: 1;
+}

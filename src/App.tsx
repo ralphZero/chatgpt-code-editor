@@ -26,28 +26,38 @@ const App = () => {
 
   return (
     <div className="App">
-      <Editor
-        height="100%"
-        width="100%"
-        defaultLanguage="javascript"
-        defaultValue="// Write your code here"
-        beforeMount={handleEditorWillMount}
-        onMount={handleEditorDidMount}
-      />
-      <button
-        style={{
-          marginTop: '10px',
-          padding: '8px 16px',
-          backgroundColor: '#4CAF50',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-        }}
-        onClick={handleInsertCode}
-      >
-        Insert Code
-      </button>
+      <div className="chatgpt-editor-container">
+        <div className="chatgpt-editor-toolbar">
+          <div className="chatgpt-editor-toolbar-brand">
+            ChatGPT Code Editor
+          </div>
+          <div className="chatgpt-editor-toolbar-buttons">
+            <button
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4CAF50',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+              onClick={handleInsertCode}
+            >
+              Insert Code
+            </button>
+          </div>
+        </div>
+        <Editor
+          className="chatgpt-editor"
+          width="100%"
+          height="100%"
+          theme="vs-dark"
+          defaultLanguage="javascript"
+          defaultValue="// Write your code here"
+          beforeMount={handleEditorWillMount}
+          onMount={handleEditorDidMount}
+        />
+      </div>
     </div>
   );
 };
