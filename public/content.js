@@ -24,6 +24,7 @@ const styleHTML = `<style>
     top: -25px;
     left: 0;
     display: flex;
+    transition: width 1.5s ease-in-out;
   }
   .chatgpt-code-editor-btn span {
     font-size: 14px;
@@ -52,9 +53,14 @@ const styleHTML = `<style>
   }
 </style>`;
 const btnHTML = `<button type="button" class="chatgpt-code-editor-btn">
-${iconHTML}
-<span>Open Code Editor</span>
+  ${iconHTML}
+  <span>Open Code Editor</span>
 </button>${styleHTML}`;
+
 const firstFormFoundInPage = document.querySelector('form');
 firstFormFoundInPage.style.position = 'relative';
 firstFormFoundInPage.insertAdjacentHTML('afterbegin', btnHTML);
+const btn = firstFormFoundInPage.querySelector('.chatgpt-code-editor-btn');
+btn.addEventListener('click', () => {
+  chrome.runtime.sendMessage({ type: 'openCodeEditor' });
+});
