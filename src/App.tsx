@@ -1,39 +1,55 @@
-import './App.css'
+import Editor, { BeforeMount, OnMount, Monaco } from '@monaco-editor/react';
+import './App.css';
+import { useRef } from 'react';
 
-function App() {
-  const handleClick = () => {
-    const modal = document.createElement('div');
-    modal.innerText = 'Here is where your code editor will go!';
-    modal.style.position = 'fixed';
-    modal.style.top = '50%';
-    modal.style.left = '50%';
-    modal.style.transform = 'translate(-50%, -50%)';
-    modal.style.padding = '20px';
-    modal.style.backgroundColor = '#fff';
-    modal.style.border = '1px solid #ccc';
-    modal.style.zIndex = '10001';
-    document.body.appendChild(modal);
+const App = () => {
+  const monacoRef = useRef<Monaco>(null);
+
+  const handleEditorWillMount: BeforeMount = (monaco) => {
+    // here is the monaco instance
+    // do something before editor is mounted
+    monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+  };
+
+  const handleEditorDidMount: OnMount = (_editor, monaco) => {
+    // here is another way to get monaco instance
+    // you can also store it in `useRef` for further usage
+    monacoRef.current = monaco;
+  };
+
+  const handleInsertCode = () => {
+    const code = monacoRef.current.getValue();
+    // Insert the code into the desired location or do something with it
+    console.log(code);
+    alert('Code inserted into the input field!');
   };
 
   return (
-    <button
-      style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        padding: '10px 20px',
-        backgroundColor: '#4CAF50',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        zIndex: 10000,
-      }}
-      onClick={handleClick}
-    >
-      Format Code
-    </button>
+    <div className="App">
+      <Editor
+        height="100%"
+        width="100%"
+        defaultLanguage="javascript"
+        defaultValue="// Write your code here"
+        beforeMount={handleEditorWillMount}
+        onMount={handleEditorDidMount}
+      />
+      <button
+        style={{
+          marginTop: '10px',
+          padding: '8px 16px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}
+        onClick={handleInsertCode}
+      >
+        Insert Code
+      </button>
+    </div>
   );
-}
+};
 
-export default App
+export default App;
